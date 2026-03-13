@@ -1,0 +1,146 @@
+<div style="background: linear-gradient(135deg, #fdf4ff 0%, #e0f2fe 50%, #f0fdfa 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
+  <div style="background: white; border-radius: 1rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); padding: 3rem; max-width: 36rem; width: 100%; position: relative; overflow: hidden;">
+    
+    <div style="position: absolute; top: -50%; right: -50%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    
+    <div style="position: relative; z-index: 1;">
+      <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Add New Song</h2>
+      <div style="height: 3px; width: 60px; background: linear-gradient(90deg, #06b6d4 0%, #ec4899 50%, #8b5cf6 100%); margin: 1rem auto 3rem; border-radius: 2px;"></div>
+
+      <div *ngIf="isSubmitting" style="text-align: center; padding: 4rem 2rem;">
+        <!-- Loading GIF -->
+        <div style="display: inline-block; margin-bottom: 1.5rem;">
+          <img src="/cute-bird-loader-loader.gif" alt="Loading..." style="width: 80px; height: 80px;">
+        </div>
+        <p style="font-size: 1.1rem; color: #6b7280; font-weight: 500; margin: 0;">Adding song...</p>
+        <p style="font-size: 0.875rem; color: #9ca3af; margin-top: 0.5rem;">Please wait while we save your song</p>
+      </div>
+
+      <div *ngIf="!isSubmitting">
+        <div *ngIf="successMessage" [style.backgroundColor]="messageType === 'success' ? '#ecfdf5' : '#fef2f2'" [style.borderLeft]="messageType === 'success' ? '4px solid #10b981' : '4px solid #ef4444'" style="border-radius: 0.5rem; padding: 1.25rem; margin-bottom: 2rem; font-size: 0.95rem; font-weight: 500;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.5rem;">{{ messageType === 'success' ? '✓' : '⚠' }}</span>
+            <span>{{ successMessage }}</span>
+          </div>
+        </div>
+
+        <form (ngSubmit)="submitForm()" style="display: flex; flex-direction: column; gap: 1.75rem;">
+          <div>
+            <label for="name" style="display: block; font-size: 0.95rem; font-weight: 700; color: #2d3748; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;">Song Name</label>
+            <input 
+              id="name"
+              [(ngModel)]="name" 
+              name="name"
+              type="text" 
+              placeholder="e.g., Bohemian Rhapsody" 
+              [style.borderColor]="focusedField === 'name' ? '#06b6d4' : '#e5e7eb'"
+              [style.backgroundColor]="focusedField === 'name' ? '#fff' : '#f9fafb'"
+              [style.boxShadow]="focusedField === 'name' ? '0 0 0 3px rgba(6, 182, 212, 0.1)' : 'none'"
+              style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease;" 
+              (focus)="focusedField = 'name'" 
+              (blur)="focusedField = null">
+            <span *ngIf="errors['name']" style="color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: block; font-weight: 500;">✗ {{ errors['name'] }}</span>
+          </div>
+
+          <div>
+            <label for="artist" style="display: block; font-size: 0.95rem; font-weight: 700; color: #2d3748; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;">Artist Name</label>
+            <input 
+              id="artist"
+              [(ngModel)]="artist" 
+              name="artist"
+              type="text" 
+              placeholder="e.g., Queen" 
+              [style.borderColor]="focusedField === 'artist' ? '#06b6d4' : '#e5e7eb'"
+              [style.backgroundColor]="focusedField === 'artist' ? '#fff' : '#f9fafb'"
+              [style.boxShadow]="focusedField === 'artist' ? '0 0 0 3px rgba(6, 182, 212, 0.1)' : 'none'"
+              style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease;" 
+              (focus)="focusedField = 'artist'" 
+              (blur)="focusedField = null">
+            <span *ngIf="errors['artist']" style="color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: block; font-weight: 500;">✗ {{ errors['artist'] }}</span>
+          </div>
+
+          <div>
+            <label for="genre" style="display: block; font-size: 0.95rem; font-weight: 700; color: #2d3748; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;">Genre</label>
+            <input 
+              id="genre"
+              [(ngModel)]="genre" 
+              name="genre"
+              type="text" 
+              placeholder="e.g., Rock" 
+              [style.borderColor]="focusedField === 'genre' ? '#06b6d4' : '#e5e7eb'"
+              [style.backgroundColor]="focusedField === 'genre' ? '#fff' : '#f9fafb'"
+              [style.boxShadow]="focusedField === 'genre' ? '0 0 0 3px rgba(6, 182, 212, 0.1)' : 'none'"
+              style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease;" 
+              (focus)="focusedField = 'genre'" 
+              (blur)="focusedField = null">
+            <span *ngIf="errors['genre']" style="color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: block; font-weight: 500;">✗ {{ errors['genre'] }}</span>
+          </div>
+
+          <div>
+            <label for="duration" style="display: block; font-size: 0.95rem; font-weight: 700; color: #2d3748; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;">Duration (seconds)</label>
+            <input 
+              id="duration"
+              [(ngModel)]="duration" 
+              name="duration"
+              type="number" 
+              placeholder="e.g., 354" 
+              [style.borderColor]="focusedField === 'duration' ? '#06b6d4' : '#e5e7eb'"
+              [style.backgroundColor]="focusedField === 'duration' ? '#fff' : '#f9fafb'"
+              [style.boxShadow]="focusedField === 'duration' ? '0 0 0 3px rgba(6, 182, 212, 0.1)' : 'none'"
+              style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease;" 
+              (focus)="focusedField = 'duration'" 
+              (blur)="focusedField = null">
+            <span *ngIf="errors['duration']" style="color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: block; font-weight: 500;">✗ {{ errors['duration'] }}</span>
+          </div>
+
+          <div>
+            <label for="releaseDate" style="display: block; font-size: 0.95rem; font-weight: 700; color: #2d3748; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;">Release Date</label>
+            <input 
+              id="releaseDate"
+              [(ngModel)]="releaseDate" 
+              name="releaseDate"
+              type="date" 
+              [style.borderColor]="focusedField === 'releaseDate' ? '#06b6d4' : '#e5e7eb'"
+              [style.backgroundColor]="focusedField === 'releaseDate' ? '#fff' : '#f9fafb'"
+              [style.boxShadow]="focusedField === 'releaseDate' ? '0 0 0 3px rgba(6, 182, 212, 0.1)' : 'none'"
+              style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; box-sizing: border-box; transition: all 0.3s ease;" 
+              (focus)="focusedField = 'releaseDate'" 
+              (blur)="focusedField = null">
+            <span *ngIf="errors['releaseDate']" style="color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: block; font-weight: 500;">✗ {{ errors['releaseDate'] }}</span>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+            <button 
+              type="submit" 
+              [style.background]="isSubmitting ? '#7c3aed' : 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)'"
+              [style.transform]="isSubmitButtonHovered ? 'translateY(-2px)' : 'translateY(0)'"
+              [style.boxShadow]="isSubmitButtonHovered ? '0 8px 25px rgba(236, 72, 153, 0.8)' : '0 4px 15px rgba(236, 72, 153, 0.6)'"
+              style="flex: 1; padding: 0.75rem 1rem; color: white; font-weight: 900; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease;"
+              [disabled]="isSubmitting"
+              (mouseenter)="isSubmitButtonHovered = true"
+              (mouseleave)="isSubmitButtonHovered = false">
+              {{ isSubmitting ? 'Adding...' : 'Add Song' }}
+            </button>
+            <button 
+              type="button" 
+              [style.backgroundColor]="isCancelButtonHovered ? '#d1d5db' : '#e5e7eb'"
+              [style.transform]="isCancelButtonHovered ? 'translateY(-2px)' : 'translateY(0)'"
+              style="flex: 1; padding: 0.75rem 1rem; color: #374151; font-weight: 700; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease;"
+              (click)="navigateBack()"
+              (mouseenter)="isCancelButtonHovered = true"
+              (mouseleave)="isCancelButtonHovered = false">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
