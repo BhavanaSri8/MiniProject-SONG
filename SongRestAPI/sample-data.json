@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Shape of You",
+    "artist": "Ed Sheeran",
+    "genre": "Pop",
+    "duration": 233,
+    "releaseDate": "2017-01-06"
+  },
+  {
+    "name": "Blinding Lights",
+    "artist": "The Weeknd",
+    "genre": "Pop",
+    "duration": 200,
+    "releaseDate": "2019-11-29"
+  },
+  {
+    "name": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "genre": "Rock",
+    "duration": 354,
+    "releaseDate": "1975-10-31"
+  },
+  {
+    "name": "Tum Hi Ho",
+    "artist": "Arijit Singh",
+    "genre": "Romantic",
+    "duration": 262,
+    "releaseDate": "2013-04-08"
+  },
+  {
+    "name": "Kesariya",
+    "artist": "Arijit Singh",
+    "genre": "Romantic",
+    "duration": 268,
+    "releaseDate": "2022-07-17"
+  },
+  {
+    "name": "Levitating",
+    "artist": "Dua Lipa",
+    "genre": "Pop",
+    "duration": 203,
+    "releaseDate": "2020-10-01"
+  },
+  {
+    "name": "Stairway to Heaven",
+    "artist": "Led Zeppelin",
+    "genre": "Rock",
+    "duration": 482,
+    "releaseDate": "1971-11-08"
+  },
+  {
+    "name": "Believer",
+    "artist": "Imagine Dragons",
+    "genre": "Rock",
+    "duration": 204,
+    "releaseDate": "2017-02-01"
+  }
+]
