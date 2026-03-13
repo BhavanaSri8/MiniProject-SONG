@@ -1,16 +1,5 @@
 # 🎵 MiniProject-Song
-
-<p align="center">
-  <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="80"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://spring.io/img/projects/spring-boot.svg" width="80"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" width="100"/>
-</p>
-
-<p align="center">
-A Full Stack Song Management Application built with Angular and Spring Boot
-</p>
+A full-stack application for managing songs, featuring an Angular frontend and a Spring Boot REST API backend.
 
 ---
 
